@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Sassy+Frass&display=swap');
+
+
+.sassy-frass-regular {
+  font-family: "Sassy Frass", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
