@@ -7,7 +7,8 @@ export default async function handler(req, res) {
 
     const clientId = process.env.SPOTIFY_CLIENT_ID
     const client_secret = process.env.SPOTIFY_CLIENT_SECRET
-    const redirectUri = "http://127.0.0.1:3000/callback"
+    // const redirectUri = "http://127.0.0.1:3000/callback"
+    const redirectUri = "https://tunesmith-two.vercel.app//callback"
 
     // we do need to add header here Authorization: Basic <base64 encoded clientId:clientSecret>
 
