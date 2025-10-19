@@ -164,6 +164,7 @@ async function searchSongOnSpotify(songObj, token) {
     //     return spotifyData.tracks.items[0].uri
     // }
 
+    
     if(spotifyData.tracks.items.length > 0 ) {
 
         let bestTrack = null
