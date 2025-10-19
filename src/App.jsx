@@ -84,7 +84,9 @@ function App() {
     const response_type = "code"
 
     // redirectUrl :- where spotify sends user back to your app after getting the things
-    const redirect_url = 'http://127.0.0.1:3000/callback'
+    // const redirect_url = 'http://127.0.0.1:3000/callback'
+    const redirect_url = "https://tunesmith-two.vercel.app//callback"
+
 
     // we gonna use ip address for localhost form now as thats the need of the hour nigga
 
