@@ -120,7 +120,7 @@ export const PlaylistGenerator = () => {
 
       {/* div for heading */}
       <div className="">
-        <h1 className="text-[3rem] md:text-7xl leading-[1.15] md:leading-[1] md:py-2 text-center bg-gradient-to-r from-neutral-200 via-neutral-300 to-neutral-400 bg-clip-text text-transparent cormo-regular ">Make Any
+        <h1 className=" text-[3rem] md:text-7xl leading-[1.15] md:leading-[1] md:py-2 text-center bg-gradient-to-r from-neutral-200 via-neutral-300 to-neutral-400 bg-clip-text text-transparent cormo-regular ">Make Any
           
            <span className="pl-3 explora text-[3.5rem] md:text-[5.5rem] "
                style={{fontWeight: 500}}
@@ -153,7 +153,7 @@ export const PlaylistGenerator = () => {
             
 
             {/* the textarea container*/}
-            <div className="relative flex  items-center gap-2.5 md:gap-6 bg-neutral-900 rounded-full w-full px-4 pl-6 py-2 md:py-3 border border-neutral-500/30 ">
+            <div className="relative flex items-center gap-2.5 md:gap-6 bg-neutral-900 rounded-full w-full px-4 pl-6 py-2 md:py-3 border border-neutral-500/30 ">
 
               {/* main teactarea */}
               <textarea 
@@ -176,24 +176,13 @@ export const PlaylistGenerator = () => {
               type="submit"
               disabled={isLoading || !prompt.trim()}
               >
-                {isLoading ?
-                
-                (            <svg 
-                className='fill-emerald-800'
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
 
-              <rect fill="#00C951" stroke="#00C951" stroke-width="14" width="30" height="30" x="25" y="50"><animate attributeName="y" calcMode="spline" dur="1.5" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect>
+                {/* always show arrow icon nigg */}
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
 
-              <rect fill="#00C951" stroke="#00C951" stroke-width="14" width="30" height="30" x="85" y="50"><animate attributeName="y" calcMode="spline" dur="1.5" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect>
 
-              <rect fill="#00C951" stroke="#00C951" stroke-width="14" width="30" height="30" x="145" y="50"><animate attributeName="y" calcMode="spline" dur="1.5" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect>
-            
-            </svg>) : (
-                                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-
-                )}
 
 
               </button>
@@ -211,15 +200,7 @@ export const PlaylistGenerator = () => {
           <div className="flex flex-col justify-center items-center gap-4 mt-4 ">
 
           <div className="w-32 h-32 ease-in-out  ">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-
-              <rect fill="#00C951" stroke="#00C951" stroke-width="14" width="30" height="30" x="25" y="50"><animate attributeName="y" calcMode="spline" dur="1.5" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect>
-
-              <rect fill="#00C951" stroke="#00C951" stroke-width="14" width="30" height="30" x="85" y="50"><animate attributeName="y" calcMode="spline" dur="1.5" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect>
-
-              <rect fill="#00C951" stroke="#00C951" stroke-width="14" width="30" height="30" x="145" y="50"><animate attributeName="y" calcMode="spline" dur="1.5" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect>
-            
-            </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="#15803D" stroke="#15803D" stroke-width="15" width="30" height="30" x="25" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect><rect fill="#15803D" stroke="#15803D" stroke-width="15" width="30" height="30" x="85" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect><rect fill="#15803D" stroke="#15803D" stroke-width="15" width="30" height="30" x="145" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect></svg>
           </div>
 
 

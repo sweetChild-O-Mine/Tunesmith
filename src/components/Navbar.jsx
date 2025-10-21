@@ -24,7 +24,7 @@ export const Navbar = ({token, handleLogout}) => {
 
             <div 
             onClick={handleLogoClick}
-            className="font-semi poiret font-mono text-2xl md:text-4xl font-extrabold ">
+            className="font-semi poiret font-mono text-2xl md:text-4xl font-extrabold cursor-pointer ">
 Tunesmith
             </div>
 
@@ -33,7 +33,7 @@ Tunesmith
 
                 <a 
                     target="_blank"
-                    href="https://github.com/sweetChild-O-Mine" className="">
+                    href="https://github.com/sweetChild-O-Mine" className="rounded-full p-1.5 hover:bg-neutral-400/20 transition-colors duration-100 ">
                     <svg xmlns="http://www.w3.org/2000/svg"
                     className="fill-current  text-white   "
                     x="0px" y="0px" width="28" height="28" viewBox="0 0 30 30">
@@ -41,19 +41,15 @@ Tunesmith
                     </svg>
                 </a>
 
-                <a href="https://twitter.com/sudo_Slash" className="">
+                <a href="https://twitter.com/sudo_Slash" className="rounded-full p-1 hover:bg-neutral-400/20 transition-colors duration-100 ">
                 <svg xmlns="http://www.w3.org/2000/svg" 
                 className="fill-current text-white "
                 x="0px" y="0px" width="28" height="28" viewBox="0 0 30 30">
                 <path d="M26.37,26l-8.795-12.822l0.015,0.012L25.52,4h-2.65l-6.46,7.48L11.28,4H4.33l8.211,11.971L12.54,15.97L3.88,26h2.65 l7.182-8.322L19.42,26H26.37z M10.23,6l12.34,18h-2.1L8.12,6H10.23z"></path>
                 </svg>
                 </a>
-                
 
 
-
-
-                
             </div>
 
         </div>

@@ -153,15 +153,15 @@ return (
 
         // treating this as a whole compo.
         // div container for these things
-        <div className=" max-w-6xl mt-8 flex flex-col font-sans items-center mx-auto p-4 border-white gap-2 ">
+        <div className=" max-w-6xl mt-4 md:mt-8 flex flex-col font-sans items-center mx-auto p-4 border-white gap-2 ">
 
           {/* div for heading  */}
-          <div className="w-full mt-4 text-neutral-400 ">
-            <h1 className="text-[3rem] md:text-7xl md:leading-relaxed text-center bg-gradient-to-r from-stone-200 via-neutral-300 to-neutral-500 bg-clip-text text-transparent cormo-regular ">
+          <div className="w-full mt-8 text-neutral-400 ">
+            <h1 className="text-[3rem] md:text-7xl leading-[1.1] md:leading-[1.2] text-center bg-gradient-to-r from-stone-200 via-neutral-300 to-neutral-500 bg-clip-text text-transparent cormo-regular ">
               Find Your 
-               <span className="pl-2 explora text-[3.7rem] md:text-[5.5rem] "
+                <span className="pl-3 explora text-[3.7rem] md:text-[5.5rem] "
                style={{ fontWeight: 500}}
-               > Playlist</span>
+               >Playlist</span>
             </h1>
           </div>
 
