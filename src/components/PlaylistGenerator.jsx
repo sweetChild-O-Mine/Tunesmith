@@ -116,39 +116,30 @@ export const PlaylistGenerator = () => {
 
 
   return (
-    <div className=' flex flex-col gap-4 items-center py-4 px-8' >
+    <div className='flex flex-col gap-4 items-center py-2 mt-4 px-8' >
 
       {/* div for heading */}
       <div className="">
-        <h1 className="text-5xl leading-tight text-center bg-gradient-to-r from-neutral-200 via-neutral-300 to-neutral-400 bg-clip-text text-transparent ">Make Any Playlist <br /> 
-        You Can Imagine
+        <h1 className="text-[3rem] md:text-7xl leading-[1.15] md:leading-[1] md:py-2 text-center bg-gradient-to-r from-neutral-200 via-neutral-300 to-neutral-400 bg-clip-text text-transparent cormo-regular ">Make Any
+          
+           <span className="pl-3 explora text-[3.5rem] md:text-[5.5rem] "
+               style={{fontWeight: 500}}
+           >Playlist</span> 
+           
+           <br /> 
+           
+        You can Imagine
+
         </h1>
 
-        <p className="text-lg text-neutral-300 text-center mt-4 ">Just Enter a Prompt and Get your Playlist</p>
+        <p 
+        style={{fontWeight: 500}}
+        className="text-lg md:text-2xl text-neutral-200 text-center mt-4 poiret "> Just describe it - Tunesmith does the rest </p>
       </div>
 
-        {/* <form 
-        className='flex items-center gap-2'
-        onSubmit={handleSubmit}
-        >
-            <input 
-            className='rounded-full px-4 pt-2 text-white bg-neutral-800'
-            value={prompt}
-            onChange={((e) => setPrompt(e.target.value))}
-            />
-            <button
-            disabled = {isLoading}
-            className='border rounded-md px-2 py-1'
-            >
-              {isLoading ? "Generating...": 'Generate Playlist'}
-            </button>
-            <p className="">
-              
-            </p>
-        </form> */}
 
         {/* new form */}
-        <form className="relative w-[500px] mt-5 "
+        <form className="relative w-xs md:w-[500px] mt-5 "
         onSubmit={handleSubmit}
         >
           
@@ -162,7 +153,7 @@ export const PlaylistGenerator = () => {
             
 
             {/* the textarea container*/}
-            <div className="relative flex items-center gap-6 bg-neutral-900 rounded-full w-full px-4 pl-6 py-3 border border-neutral-500/30 ">
+            <div className="relative flex  items-center gap-2.5 md:gap-6 bg-neutral-900 rounded-full w-full px-4 pl-6 py-2 md:py-3 border border-neutral-500/30 ">
 
               {/* main teactarea */}
               <textarea 
@@ -171,7 +162,7 @@ export const PlaylistGenerator = () => {
               onChange={(e) => setPrompt(e.target.value)}
               placeholder='Make a Country Playlist ft. of'
               rows={1}
-              className='flex-1 bg-transparent text-neutral-200 placeholder:text-neutral-500 leading-6 resize-none outline-none overflow-y-auto 
+              className='flex-1 bg-transparent text-neutral-200 placeholder:text-neutral-500 leading-6 resize-none outline-none overflow-y-auto  
               [&::-webkit-scrollbar]:hidden
               [-ms-overflow-style:name]
               [scrollbar-width:none]
@@ -234,9 +225,9 @@ export const PlaylistGenerator = () => {
 
 
             {/* lodidng text they say */}
-            <div className="text-center border-b">
-              <p className="text-lg">
-                Creating Your Playlist...
+            <div className="text-center border-neutral-400 border-b">
+              <p className="text-lg text-neutral-300 afacad-medium ">
+                Cooking up your playlist...
               </p>
             </div>
 
@@ -250,11 +241,13 @@ export const PlaylistGenerator = () => {
           {/* the real preview section */}
           {previewData && (
             // main containerr for the thing
-            <div className="w-full max-w-4xl mx-auto mt-0 space-y-4">
+            <div className="w-full max-w-[22rem] md:max-w-2xl lg:max-w-4xl mx-auto mt-2 space-y-4 px-2">
 
               {/* playlist header */}
               <div className="text-center mt-4 mb-6">
-                <h2 className="text-2xl font-bold text-neutral-300">
+                <h2 
+                style={{fontWeight: 500}}
+                className="text-4xl font-bold poiret tracking-wide text-neutral-200">
                   {previewData.playlistName}
                 </h2>
                 {/* song kitne nmile woh dikhane ka mn toh nhi hai abhi so we'll see later(shyd) */}
@@ -295,13 +288,11 @@ export const PlaylistGenerator = () => {
           )}
 
 
-          <div className="max-w-7xl mx-auto mt-8">
+          <div className="w-full flex justify-center items-center px-2 mt-4 md:mt-6 ">
             <img 
             src={vinyl2}
             alt="vinyl-img" 
-            height={700}
-            width={800}
-            className="object-contain mask-b-from-20% mask-b-to-80% opacity-60 mx-auto" />
+            className="w-full h-full md:w-[820px] md:h-[820px] object-contain mask-b-from-20% mask-b-to-80% opacity-60 mx-auto" />
           </div>
 
 

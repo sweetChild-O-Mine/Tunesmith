@@ -12,7 +12,6 @@ import cas2 from "./assets/c1.png";
 function App() {
 
   const [token, setToken] = useState(null)
-  const [profile, setProfile] = useState(null)
 
   // useEffect for our fetch  request and a ll 
   useEffect(() => {
@@ -135,32 +134,34 @@ return (
   
     {/* Your Content/Components */}
 
-    <Navbar />
-
-           <div className="relative left-32 z-20 w-px h-full bg-gradient-to-b from-neutral-300 via-neutral-200 to-transparent inset-y-0  " />
-
+    <Navbar
+    token={token}
+    handleLogout={handleLogout}
+    />
 
 
            {/* main container  */}
       <div className="relative max-w-6xl min-h-screen flex flex-col gap-4  mx-auto">
         
 
-           <div className="absolute left-24 w-px h-full bg-gradient-to-b from-transparent via-neutral-800 to-transparent inset-y-0 " />
-           <div className="absolute right-24 w-px h-full bg-gradient-to-b from-transparent via-neutral-800 to-transparent inset-y-0 " />
+           <div className="absolute left-6  md:left-24 w-px h-full bg-gradient-to-b from-transparent via-neutral-800 to-transparent inset-y-0 " />
+           <div className="absolute right-6  md:right-24 w-px h-full bg-gradient-to-b from-transparent via-neutral-800 to-transparent inset-y-0 " />
 
 
-        {/* <div className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/21 h-32 bg-gradient-to-r from-transparent via-green-600/40 to-transparent blur-3xl"/> */}
 
       {!token ? (
 
         // treating this as a whole compo.
         // div container for these things
-        <div className=" max-w-6xl mt-8 flex flex-col font-sans items-center gap-4 mx-auto p-4 border-white  ">
+        <div className=" max-w-6xl mt-8 flex flex-col font-sans items-center mx-auto p-4 border-white gap-2 ">
 
           {/* div for heading  */}
-          <div className=" border-neutral-300 text-neutral-400 ">
-            <h1 className="text-6xl text-center bg-gradient-to-r from-stone-200 via-neutral-300 to-neutral-500 bg-clip-text text-transparent">
-              Find Your Playlist
+          <div className="w-full mt-4 text-neutral-400 ">
+            <h1 className="text-[3rem] md:text-7xl md:leading-relaxed text-center bg-gradient-to-r from-stone-200 via-neutral-300 to-neutral-500 bg-clip-text text-transparent cormo-regular ">
+              Find Your 
+               <span className="pl-2 explora text-[3.7rem] md:text-[5.5rem] "
+               style={{ fontWeight: 500}}
+               > Playlist</span>
             </h1>
           </div>
 
@@ -170,9 +171,11 @@ return (
           {/* <div className=" w-full bg-gradient-to-b from-black/10 to-red-950/40 backdrop-blur-lg gap-10 rounded-3xl text-neutral-200 flex flex-col items-center px-6 py-4 "> */}
           {/* </div> */}
 
-            <p className="text-center my-3 text-base leading-relaxed text-neutral-300  ">
-                    Let AI create the perfect playlist for any<br /> 
-      Just describe it what you 
+            <p 
+            style={{fontWeight: 600}}
+            className="text-center mb-8 text-lg md:text-2xl leading-snug text-neutral-300 poiret ">
+  Can't decide what to listen to ?<br /> 
+  Let AI be your indecisive friend's cure 
             </p>
 
             <div className="">
@@ -192,12 +195,16 @@ return (
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 via-green-600/20 to-emerald-600/20 rounded-full transition-all duration-300 "></div>
                 {/* for content */}
                 <span className="relative z-10 flex justify-center items-center gap-3">
-                  <svg className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
     </svg>
 
-                  <p className="text-sm text-white
-                  group-hover:drop-shadow-neutral-950 text-shadow-neutral-950
+                  <p 
+                  style={{
+                    fontWeight: 400
+                  }}
+                  className="text-lg md:text-2xl cormo-regular  text-white afacad-medium
+                  group-hover:drop-shadow-neutral-950 text-shadow-neutral-950 transition-all duration-75
                   ">Login with Spotify</p>
                 </span>
 
@@ -205,7 +212,7 @@ return (
 
             </div>
 
-            <div className="w-sm mt-4 border-t border-neutral-500" />
+            <div className="w-[18rem] md:w-sm mt-6 md:mt-4 border-t border-neutral-500" />
 
             {/* gridd for that old ui but ig not needed now maybe */}
             {/* <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 pb-8 ">
@@ -214,13 +221,12 @@ return (
             </div> */}
 
             {/* div for the image */}
-            <div className=" border-white 2 max-w-7xl mx-auto  ">
+            <div className=" mt-6 md:mt-0 w-full flex justify-center px-4 ">
               <img 
               src={vinyl2}
               alt="vinyl-img" 
-              height={700}
-              width={900}
-              className="object-contain  mask-b-from-20% mask-b-to-80% " />
+
+              className="w-full h-full md:w-[900px] md:h-[900px] object-contain  mask-b-from-20% mask-b-to-80% " />
             </div>
 
             
@@ -230,7 +236,7 @@ return (
       ) : (
 
         // main container
-        <div className="w-full mt-20 text-neutral-50 ">
+        <div className="w-full text-neutral-50 ">
 
           <div className="flex justify-center items-center flex-col gap-3 py-4">
             {/* div for the heading  */}

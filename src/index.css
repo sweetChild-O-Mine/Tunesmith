@@ -1,10 +1,90 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sassy+Frass&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Explora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Explora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Cormorant+Upright:wght@300;400;500;600;700&family=Explora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap');
 
-
-.sassy-frass-regular {
+.sassy {
   font-family: "Sassy Frass", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.explora {
+  font-family: "Explora", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.cormo-light {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.cormo-regular {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cormo-medium {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.cormo-semibold {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.cormo-bold {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* afacad font */
+
+.afacad-light {
+  font-family: "Afacad Flux", sans-serif;
+  font-weight: 300;
+}
+
+.afacad-regular {
+  font-family: "Afacad Flux", sans-serif;
+  font-weight: 400;
+}
+
+.afacad-medium {
+  font-family: "Afacad Flux", sans-serif;
+  font-weight: 500;
+}
+
+.afacad-bold {
+  font-family: "Afacad Flux", sans-serif;
+  font-weight: 700;
+}
+
+.afacad-extrabold {
+  font-family: "Afacad Flux", sans-serif;
+  font-weight: 800;
+}
+
+.oooh-baby {
+  font-family: "Oooh Baby", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.poiret {
+  font-family: "Poiret One", sans-serif;
   font-weight: 400;
   font-style: normal;
 }

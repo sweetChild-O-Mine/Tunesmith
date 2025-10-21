@@ -14,10 +14,6 @@ const router = createBrowserRouter([
   {
     path: "/callback",
     element: <Callback />
-  },
-  {
-    path: "/playlist-generator",
-    element: <PlaylistGenerator />
   }
 ])
 

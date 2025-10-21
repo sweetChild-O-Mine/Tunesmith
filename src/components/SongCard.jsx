@@ -3,16 +3,16 @@ export const SongCard = ({index, songName, artistName, albumArt, songUrl }) => {
   return (
 
     // main container div
-        <div className="group border-b border-neutral-400 hover:border-neutral-400/50 hover:scale-102 transition-all duration-200 py-3 w-full flex justify-between px-4 items-center cursor-pointer ">
+        <div className="group border-b border-neutral-400 hover:border-neutral-400/50 hover:scale-102 transition-all duration-200 py-3 w-full flex justify-between gap-4 md:gap-6 px-2 md:px-4 items-center cursor-pointer  ">
             {/* div one  */}
-            <div className="flex gap-3 items-center min-w-0 flex-10">
+            <div className="flex gap-2 md:gap-3 items-center min-w-0 flex-1">
                 {/* index no. */}
-                <span className="text-sm text-neutral-400 w-8 text-right shrink-0 pr-2 ">
+                <span className="text-sm text-neutral-400 w-6 md:w-8 text-center shrink-0  ">
                     {index + 1}
                 </span>
                 {/* icon */}
                 {/* yahan par album art dalenge  */}
-                <div className="w-[42px] h-[42px] flex shrink-0 ">
+                <div className="w-10 h-10 md:w-[42px] md:h-[42px] flex shrink-0 ">
                     {albumArt? (
                     <img src={albumArt} alt="album-art" className="w-full h-full object-cover rounded-sm " />
                     ): (
@@ -25,14 +25,14 @@ export const SongCard = ({index, songName, artistName, albumArt, songUrl }) => {
                     {/* <img src={albumArt} alt="album-art" /> */}
                 </div>
 
-                <div className="flex flex-col items-start justify-center min-w-0 flex-1 ">
-                    <h3 className="text-lg truncate text-neutral-100">{songName}</h3>
-                    <p className="text-sm truncate text-neutral-400 group-hover:text-neutral-300 transition-colors duration-200 ">{artistName}</p>
+                <div className="flex flex-col items-start justify-center min-w-0 flex-1 overflow-hidden ">
+                    <h3 className="text-base md:text-lg truncate text-neutral-100 w-full ">{songName}</h3>
+                    <p className="text-xs md:text-sm truncate w-full text-neutral-400 group-hover:text-neutral-300 transition-colors duration-200 ">{artistName}</p>
                 </div>
             </div>
 
             {/* div for spotify icon and link maybe idkd  */}
-            <div className="">
+            <div className="shrink-0 ml-2 ">
                 <a 
                 href={songUrl || "#"}
                 target="_blank"
