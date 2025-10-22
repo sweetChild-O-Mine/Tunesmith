@@ -94,7 +94,7 @@ export const PlaylistGenerator = () => {
         setIsLoading(false)
         setPreviewData(null)
         setPrompt("")
-        alert("Playlist added to Spotify!!! now dance basanti")
+        alert("Playlist added to your Spotify account...Enjoy!!! ")
       })
       .catch(error => {
         console.log('Error creatin playlist', error)
