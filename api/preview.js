@@ -1,6 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 // create cnnection to gmeini
-const ai = new GoogleGenAI({})
+const ai = new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY
+})
 
 // fucntion for req
 export default async function handler(req, res) {
@@ -15,7 +17,7 @@ export default async function handler(req, res) {
     const {prompt, token} = req.body
 
     if(!token) {
-        res.status(401)({error: "No access token provided "})
+        res.status(401).json({error: "No access token provided "})
         return
     }
 
@@ -39,14 +41,40 @@ export default async function handler(req, res) {
     Return ONLY valid JSON.
     `;
 
-    // finally the main req 
-    const response = await ai.models.generateContent({
-        model: "gemini-2.5-pro",
-        contents: aiPrompt,
-        generationConfig: {
-            response_mime_type: "application/json"
+    // // finally the main req 
+    // const response = await ai.models.generateContent({
+    //     model: "gemini-2.5-pro",
+    //     contents: aiPrompt,
+    //     generationConfig: {
+    //         response_mime_type: "application/json"
+    //     }
+    // })
+
+
+    // mainreq they say
+    let response;
+    let retries = 3;
+
+    while(retries > 0) {
+        try {
+            response = await ai.models.generateContent({
+                model: "gemini-2.5-pro",
+                contents: aiPrompt,
+                generationConfig: {
+                    response_mime_type: "application/json"
+                }
+            })
+            break;
+        } catch (error) {
+            retries-- ;
+            if(retries == 0) {
+                return res.status(503).json({error: "AI serivce is Down"})
+            }
+            await new Promise(resolve => setTimeout(resolve, 2000))
         }
-    })
+
+
+    }
 
     console.log(response)
     console.log(response.text)

@@ -16,6 +16,8 @@ export const PlaylistGenerator = () => {
     // to store songs data
     const [previewData, setPreviewData] = useState(null)    
     const [isLoading, setIsLoading] = useState(false)     //loading state for animation
+    const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(null)
 
     // handler for form submmison 
     const handleSubmit = (e) => {
@@ -29,8 +31,10 @@ export const PlaylistGenerator = () => {
     }
 
     // submit pr click hote hi bande ko laoding dikhayenge hum 
-    setIsLoading(true)
+      setIsLoading(true)
       setPreviewData(null);
+      setError(null)
+      setSuccess(null)
 
 
       // fetch call for api/generate
@@ -48,13 +52,14 @@ export const PlaylistGenerator = () => {
         // stop the loading and show him the fucking data nigg
         setIsLoading(false)
         setPrompt("")
+
       })
       .catch(error => {
         console.error("error fetching data", error)
         setIsLoading(false)
         setPreviewData(null)
-        // alert the user
-        alert("Failed to generate playlist. Please try again!!!")
+        // change the error state
+        setError("Oops! The AI server seems busy (or your login expired).\n Go Try again in a minute, or log out and back in.")
       })
     }
 
@@ -94,11 +99,12 @@ export const PlaylistGenerator = () => {
         setIsLoading(false)
         setPreviewData(null)
         setPrompt("")
-        alert("Playlist added to your Spotify account...Enjoy!!! ")
+        setSuccess("Playlist added to your Spotify account..Go and check you spotify Library...Enjoy!!! ")
       })
       .catch(error => {
-        console.log('Error creatin playlist', error)
+        console.log('error fetching data', error)
         setIsLoading(false)
+        setError('Oops! The AI server seems busy (or your login expired).\n Try again in a minute, or log out and back in.')
       })
     }
 
@@ -193,6 +199,23 @@ export const PlaylistGenerator = () => {
 
         </form>
 
+        {/* error handling  */}
+        {error && (
+          <div className="text-center mt-6">
+            <p className="text-lg text-red-600 whitespace-pre-line">
+              {error}
+            </p>
+          </div>
+        )}
+
+        {success && (
+          <div className="text-center mt-8">
+            <p className="text-xl max-w-md py-0.5 leading-relaxed  whitespace-pre-line  text-neutral-200">
+              {success}
+            </p>
+          </div>
+        )}
+
         {/* lets start with this thing of loading */}
         {/* basically if something is true then only show this else fuck urself  */}
         {isLoading && !previewData && (
@@ -207,8 +230,11 @@ export const PlaylistGenerator = () => {
 
             {/* lodidng text they say */}
             <div className="text-center border-neutral-400 border-b">
-              <p className="text-lg text-neutral-300 afacad-medium ">
+              <p className="text-xl text-neutral-300 afacad-medium ">
                 Cooking up your playlist...
+              </p>
+              <p className="text-lg text-neutral-300 afacad-medium ">
+                Waking up the AI... This can take up to 10 seconds on the first try!!!
               </p>
             </div>
 
