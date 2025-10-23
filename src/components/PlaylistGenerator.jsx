@@ -45,13 +45,29 @@ export const PlaylistGenerator = () => {
         },
         body: JSON.stringify({ prompt: prompt, token: token })
       })
-      .then(response => response.json())    //backend se data bhi aayega nah toh
+      .then(response => {
+        console.log("Response status:", response.status)
+        return response.json()})    //backend se data bhi aayega nah toh
       .then(data => {
+
+
         console.log('Got the data yayyy!!!', data)
-        setPreviewData(data) 
-        // stop the loading and show him the fucking data nigg
-        setIsLoading(false)
-        setPrompt("")
+        console.log("Songs array:", data.songs)
+
+        if(data.error) {
+          setIsLoading(false)
+          setError("ai is overloaded af please w8...")
+          return
+        }
+
+        if (data.songs && Array.isArray(data.songs)) {
+          setPreviewData(data) 
+          setIsLoading(false)
+          setPrompt("")
+        } else {
+          setIsLoading(false)
+          setError("Something went wrong. Please try again.")
+        }
 
       })
       .catch(error => {

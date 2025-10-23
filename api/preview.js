@@ -53,12 +53,12 @@ export default async function handler(req, res) {
 
     // mainreq they say
     let response;
-    let retries = 3;
+    let retries = 1;
 
     while(retries > 0) {
         try {
             response = await ai.models.generateContent({
-                model: "gemini-2.5-pro",
+                model: "gemini-2.5-flash",
                 contents: aiPrompt,
                 generationConfig: {
                     response_mime_type: "application/json"
@@ -66,13 +66,13 @@ export default async function handler(req, res) {
             })
             break;
         } catch (error) {
+            console.log(`Gemini retry ${4- retries}/2`, error.message)
             retries-- ;
-            if(retries == 0) {
-                return res.status(503).json({error: "AI serivce is Down"})
+            if(retries === 0) {
+                return res.status(503).json({error: "AI serivce is overloaded pls w8 for 30 seconds"})
             }
             await new Promise(resolve => setTimeout(resolve, 2000))
         }
-
 
     }
 
@@ -131,6 +131,12 @@ export default async function handler(req, res) {
 //             found: songUris[index] !== null
 //         }) )
 // })
+
+console.log("Final response being sent:", {
+    playlistName: playlistName,
+    songs: songs
+})
+
 
 
     res.status(200).json({

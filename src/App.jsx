@@ -56,7 +56,6 @@ function App() {
       })
       .then(data => {
         console.log('Success yayyy!!!', data)
-        setProfile(data)
       })
       .catch(error => {
         console.error('Error fetching data', error)
@@ -115,7 +114,6 @@ function App() {
 
     // make the states null
     setToken(null)
-    setProfile(null)
   }
 
 
