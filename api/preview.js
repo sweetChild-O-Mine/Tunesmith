@@ -53,10 +53,12 @@ export default async function handler(req, res) {
 
     // mainreq they say
     let response;
-    let retries = 1;
+    let MAX_RETRIES = 3;
+    let retries = MAX_RETRIES
 
     while(retries > 0) {
         try {
+            console.log(`Gemini attempt ${MAX_RETRIES - retries + 1} of ${MAX_RETRIES}`)
             response = await ai.models.generateContent({
                 model: "gemini-2.5-flash",
                 contents: aiPrompt,
@@ -64,13 +66,18 @@ export default async function handler(req, res) {
                     response_mime_type: "application/json"
                 }
             })
+            console.log("Gemini request sucessful!!!")
             break;
         } catch (error) {
-            console.log(`Gemini retry ${4- retries}/2`, error.message)
+            console.log(`Gemini Attempt ${MAX_RETRIES -retries + 1} failed:`, error.message)
             retries-- ;
             if(retries === 0) {
+                console.log("All gemini retries failed, Giving up!!")
                 return res.status(503).json({error: "AI serivce is overloaded pls w8 for 30 seconds"})
             }
+
+            // if stilll attempts bai hain then just let him wait and do the shit 
+            console.log(`Waiting 2 seconds before next retry... (${retries} retries left)`)
             await new Promise(resolve => setTimeout(resolve, 2000))
         }
 

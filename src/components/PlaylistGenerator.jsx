@@ -1,10 +1,5 @@
 import {useRef, useState, useEffect} from 'react'
-import vinyl from "../assets/BenBois_Vinyl_records.svg";
 import vinyl2 from "../assets/f3.webp";
-import cas3 from "../assets/c2.webp";
-import cas from "../assets/g1.png";
-import cas2 from "../assets/c1.png";
-import hi from '../assets/hi.mp4'
 import { SongCard } from './SongCard';
 import { SpotifyBtn } from './SpotifyBtn';
 
@@ -18,6 +13,18 @@ export const PlaylistGenerator = () => {
     const [isLoading, setIsLoading] = useState(false)     //loading state for animation
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
+    
+
+    // for auto-scroll
+    const successRef = useRef(null)
+    useEffect(() => {
+      if(!success && successRef.current) {
+        successRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        })
+      }
+    },[success])
 
     // handler for form submmison 
     const handleSubmit = (e) => {
@@ -45,8 +52,16 @@ export const PlaylistGenerator = () => {
         },
         body: JSON.stringify({ prompt: prompt, token: token })
       })
-      .then(response => {
+      .then(async response => {
         console.log("Response status:", response.status)
+        if(!response.ok) {
+          // get the error msg from server 
+          const errorData = await response.json().catch(() => null)
+
+          const message = errorData?.error || `Server Error: ${response.status}`
+          throw new error(message)
+        }
+
         return response.json()})    //backend se data bhi aayega nah toh
       .then(data => {
 
@@ -66,7 +81,8 @@ export const PlaylistGenerator = () => {
           setPrompt("")
         } else {
           setIsLoading(false)
-          setError("Something went wrong. Please try again.")
+          throw new Error("Something went wrong. Please try again.")
+
         }
 
       })
@@ -182,6 +198,12 @@ export const PlaylistGenerator = () => {
               ref={textareaRef}
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
+              onKeyDown={(e) => {
+                if(e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault()
+                  handleSubmit(e)
+                }
+              }}
               placeholder='Make a Country Playlist ft. of'
               rows={1}
               className='flex-1 bg-transparent text-neutral-200 placeholder:text-neutral-500 leading-6 resize-none outline-none overflow-y-auto  
@@ -225,7 +247,9 @@ export const PlaylistGenerator = () => {
         )}
 
         {success && (
-          <div className="text-center mt-8">
+          <div 
+          ref={successRef}
+          className="text-center mt-8">
             <p className="text-xl max-w-md py-0.5 leading-relaxed  whitespace-pre-line  text-neutral-200">
               {success}
             </p>
@@ -245,12 +269,14 @@ export const PlaylistGenerator = () => {
 
 
             {/* lodidng text they say */}
-            <div className="text-center border-neutral-400 border-b">
-              <p className="text-xl text-neutral-300 afacad-medium ">
+            <div className="text-center pb-4 border-neutral-400 border-b">
+              <p className="text-2xl text-neutral-300 afacad-medium ">
                 Cooking up your playlist...
               </p>
-              <p className="text-lg text-neutral-300 afacad-medium ">
-                Waking up the AI... This can take up to 10 seconds on the first try!!!
+              <p className="text-xl mt-6 text-neutral-300 afacad-medium ">
+                Waking up the AI... This can take up to 20-25 seconds on the first try!!!
+                <br /> so you better drink some water or touch some grass!!!
+
               </p>
             </div>
 
