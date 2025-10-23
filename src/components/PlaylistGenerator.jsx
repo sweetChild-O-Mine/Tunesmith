@@ -71,7 +71,11 @@ export const PlaylistGenerator = () => {
 
         if(data.error) {
           setIsLoading(false)
-          setError("ai is overloaded af please w8...")
+          setError(
+            error instanceof Response && error.status === 401
+    ? "Your Spotify login expired. Please log out by clicking on the Tunesmith logo at the top and log back in."
+    : "Oops! The server is busy or something went wrong. Please try again."
+          )
           return
         }
 
