@@ -36,6 +36,12 @@ export default async function handler(req, res) {
         body: body.toString()
     } )
 
+    if (!response.ok) {
+    const errorText = await response.text();
+    console.error("Spotify ne token nahi diya. HTML error:", errorText);
+    res.status(500).json({ error: "Failed to get token from Spotify", details: errorText });
+    return;
+}
     // get the data from the response(yayyy acess token finallyyyy)
     const data = await response.json() //udhar se string me aayaega so make it js object again 
 
