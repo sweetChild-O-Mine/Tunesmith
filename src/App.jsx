@@ -25,42 +25,42 @@ function App() {
 
   },[])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if(token != null) {
-      testSpotifyAPI()
-      console.log('testSpotifyApi executed')
-    }
+  //   if(token != null) {
+  //     testSpotifyAPI()
+  //     console.log('testSpotifyApi executed')
+  //   }
 
-  },[token])
+  // },[token])
   
 
-    // our fetch fucntion and use this token to get user details 
-    const testSpotifyAPI = async () => {
-      // makefetch req
-      fetch('https://api.spotify.com/v1/me', {
-        // type of post 
-        method: 'GET',
-        headers: {
-          'Authorization' : `Bearer ${token}`,
-          'Content-Type' : 'application/json'
-        }
-      })
-      .then((response) => {
-        if(!response.ok) {    //read it like response ok nhi hai kya ???
-          throw new Error(`HTTP error! status ${response.status} `)
-        }
+    // // our fetch fucntion and use this token to get user details 
+    // const testSpotifyAPI = async () => {
+    //   // makefetch req
+    //   fetch('https://api.spotify.com/v1/me', {
+    //     // type of post 
+    //     method: 'GET',
+    //     headers: {
+    //       'Authorization' : `Bearer ${token}`,
+    //       'Content-Type' : 'application/json'
+    //     }
+    //   })
+    //   .then((response) => {
+    //     if(!response.ok) {    //read it like response ok nhi hai kya ???
+    //       throw new Error(`HTTP error! status ${response.status} `)
+    //     }
 
-        // return the final reponse
-        return response.json()  //response milega from spotify so convert krao usko and we'll use that thing
-      })
-      .then(data => {
-        console.log('Success yayyy!!!', data)
-      })
-      .catch(error => {
-        console.error('Error fetching data', error)
-      })
-    }
+    //     // return the final reponse
+    //     return response.json()  //response milega from spotify so convert krao usko and we'll use that thing
+    //   })
+    //   .then(data => {
+    //     console.log('Success yayyy!!!', data)
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching data', error)
+    //   })
+    // }
 
 
 
@@ -91,7 +91,9 @@ function App() {
 
     // scope :- what are the permission you arer askng for
     // for creatng
-    const scope = "playlist-modify-public playlist-modify-private"
+    // const scope = "playlist-modify-public playlist-modify-private"
+    const scope = "playlist-modify-public playlist-modify-private user-read-private"
+    
 
     const baseUrl = "https://accounts.spotify.com/authorize"
 
