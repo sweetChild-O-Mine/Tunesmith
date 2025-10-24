@@ -276,7 +276,7 @@ async function searchSongOnSpotify(songObj, token) {
             externalUrl: bestTrack.external_urls.spotify
         };
 
-    }
+    }v
 
 
     // Inside searchSongOnSpotify, on failure:
