@@ -18,7 +18,6 @@ function App() {
 
     const accessToken = localStorage.getItem('spotify_access_token')
 
-    console.log("App.jsx Mount - Token from localStorage:", accessToken ? accessToken.substring(0, 10) + "..." : "null");
     if(accessToken) {
       setToken(accessToken)
     }
@@ -34,11 +33,11 @@ function App() {
     }
 
   },[token])
+  
 
-  console.log(`App.jsx Effect - Attempting fetch /me (Retries left: ${retryCount}). Token:`, token ? token.substring(0, 10) + "..." : "null");
     // our fetch fucntion and use this token to get user details 
     const testSpotifyAPI = async () => {
-      // makefetch rq
+      // makefetch req
       fetch('https://api.spotify.com/v1/me', {
         // type of post 
         method: 'GET',
