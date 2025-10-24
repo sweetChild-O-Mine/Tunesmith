@@ -33,8 +33,8 @@ function App() {
     }
 
   },[token])
-  
 
+  console.log("Attempting to fetch /me with token:", token ? token.substring(0, 10) + "..." : "null or invalid");
     // our fetch fucntion and use this token to get user details 
     const testSpotifyAPI = async () => {
       // makefetch req

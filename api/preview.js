@@ -107,23 +107,62 @@ export default async function handler(req, res) {
     console.log(playlistName)
     console.log(songs)
 
-    // create arr usnig promises using .map()
-    const searchPromises = songs.map(songObj => {
-        return searchSongOnSpotify(songObj, token)
-    })
+    // // create arr usnig promises using .map()
+    // const searchPromises = songs.map(songObj => {
+    //     return searchSongOnSpotify(songObj, token)
+    // })
 
-    // w8 for all promise to resolve at the same time
-    const songUris = await Promise.all(searchPromises)
+    // // w8 for all promise to resolve at the same time
+    // const songUris = await Promise.all(searchPromises)
     
-    // 3. filter nulls
-    // const validUris = songUris.filter(uri => uri != null )
+    // // 3. filter nulls
+    // // const validUris = songUris.filter(uri => uri != null )
 
-    const validUris = songUris
-        .filter(data => data !== null)
-        .map(data => data.uri)
+    // const validUris = songUris
+    //     .filter(data => data !== null)
+    //     .map(data => data.uri)
+
+    // important thing starts from here 
+    // console.log('Found URIs', validUris)
+
+    console.log("starting batched spotify search")
+    const foundSongsData = []
+    const batchSize = 5
+
+    for (let i = 0; i < songs.length ; i +=batchSize) {
+        const batch = songs.slice(i, i+batchSize)
+        console.log(`Processing batch ${Math.floor(i / batchSize) + 1}...`);
+
+// Create search promises for the current batch
+      const searchPromises = batch.map(songObj => 
+        searchSongOnSpotify(songObj, token) // Call your function for each song
+          .catch(err => { // Catch errors within the batch
+            console.error(`Error searching "${songObj.song}":`, err);
+            return null; // Ensure Promise.all doesn't fail on one error
+          })
+      );
+      
+      // Wait for the current batch to resolve
+      const batchResults = await Promise.all(searchPromises);
+      
+      // Add successful results (non-null objects) to our main array
+      batchResults.forEach(songData => {
+        if (songData) { // Check if it's not null
+          foundSongsData.push(songData); 
+        } 
+      });
+
+      // Optional delay between batches
+      if (i + batchSize < songs.length) { 
+         await new Promise(resolve => setTimeout(resolve, 300)); // Wait 300ms
+      }
+    }
+    console.log("Finished batched search. Found songs:", foundSongsData.length);
 
 
-    console.log('Found URIs', validUris)
+
+
+
 
 
     // send it now also isko json string me convert krdo bhjejne se pehle also one more thing si that res.jsonautometically does JSON.stringfy() for you....aww so sweet nigg
@@ -148,17 +187,14 @@ console.log("Final response being sent:", {
 
     res.status(200).json({
         playlistName: playlistName,
-        songs: songs.map((song, index) => {
-            const songData = songUris[index]
-            return {
-                song: song.song,
-                artist: song.artist,
-                uri: songData?.uri || null,
-                albumArt: songData?.albumArt || null,
-                externalUrl: songData?.externalUrl || null,
-                found: songData !== null
-            }
-        })
+        songs: foundSongsData.map(songData => ({ 
+            song: songData.name, // Use Spotify's name
+            artist: songData.artist, // Use Spotify's artists string
+            uri: songData.uri,
+            albumArt: songData.albumArt,
+            externalUrl: songData.externalUrl,
+            found: true // All songs in this list were successfully found
+        }))
 })
 
 
@@ -230,14 +266,24 @@ async function searchSongOnSpotify(songObj, token) {
             bestTrack = spotifyData.tracks.items[0]
         }
 
+// Inside searchSongOnSpotify, on success:
         return {
+            found: true, // Add this flag
             uri: bestTrack.uri,
-            albumArt: bestTrack.album.images[2]?.url || track.album.images[0]?.url,
+            name: bestTrack.name, // Spotify's name
+            artist: bestTrack.artists.map(a => a.name).join(', '), // Spotify's artists
+            albumArt: bestTrack.album.images[2]?.url || bestTrack.album.images[0]?.url,
             externalUrl: bestTrack.external_urls.spotify
-        }
+        };
 
     }
 
 
-    return null
+    // Inside searchSongOnSpotify, on failure:
+    console.log(`Could not find a match for: ${songObj.song}`);
+    return { 
+        found: false, 
+        song: songObj.song, // Return original details
+        artist: songObj.artist 
+    };
 }
